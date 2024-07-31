@@ -19,7 +19,7 @@ function FilmDetail() {
     const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
-        fetch(`http://localhost:8080/films/${id}`)
+        fetch(`http://13.40.195.171/films/${id}`)
         .then(response => response.json())
         .then(data => {
             setFilm(data);
