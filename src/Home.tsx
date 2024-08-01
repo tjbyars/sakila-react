@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ActorData } from './components/Types';
+import { BASE_URL } from './api';
 
 function Home() {
     const [actors, setActors] = useState<ActorData[]>([]);
@@ -8,7 +9,7 @@ function Home() {
     const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
-        fetch('http://13.40.195.171/api/actors')
+        fetch(`${BASE_URL}/actors`)
         .then(response => response.json())
         .then((data: ActorData[]) => {
             setActors(data);

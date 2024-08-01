@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { ActorData, Film } from './Types';
 import FilmCard from './FilmCard';
+import { BASE_URL } from '../api';
 
 function ActorFilms() {
     const { id } = useParams<{ id: string }>();
@@ -10,7 +11,7 @@ function ActorFilms() {
     const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
-        fetch(`http://13.40.195.171/api/actors/${id}`)
+        fetch(`${BASE_URL}/actors/${id}`)
         .then(response => response.json())
         .then((data: ActorData) => {
             setData(data);
