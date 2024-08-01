@@ -10,7 +10,7 @@ function ActorFilms() {
     const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
-        fetch(`http://13.40.195.171/actors/${id}`)
+        fetch(`http://13.40.195.171/api/actors/${id}`)
         .then(response => response.json())
         .then((data: ActorData) => {
             setData(data);
