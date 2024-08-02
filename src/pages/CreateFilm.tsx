@@ -1,9 +1,9 @@
 import '../App.css'
 import { BASE_URL } from '../api';
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 
 function CreateFilm() {
-    const [formData, setFormData] = useState({
+    const [formData] = useState({
         title: '',
         description: '',
         release_year: '',
