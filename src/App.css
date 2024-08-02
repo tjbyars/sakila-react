@@ -6,5 +6,20 @@
 }
 
 body {
-  background-color: #a79cb5;
+  font-family: Montserrat;
+  margin: 0 auto;
+}
+
+.actor {
+  background-color: #659A6B;
+}
+
+.film {
+  background-color: #657A9A;
+}
+
+.justify {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }

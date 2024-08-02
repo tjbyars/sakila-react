@@ -1,19 +1,19 @@
 export interface Film{
     id: number;
     title: string;
-    releaseYear: number;
+    release_year: number;
     description: string;
     cast: ActorData[];
     language: {
         id: number;
         name: string;
     }
-    rentalDuraction: number;
-    rentalRate: number;
+    rental_duration: number;
+    rental_rate: number;
     length: number;
-    replacementCost: number;
+    replacement_cost: number;
     rating: "G" | "PG_13" | "PG" | "R" | "NC_17";
-    specialFeatures: string[];
+    special_features: string[];
 }
 
 export interface ActorData {

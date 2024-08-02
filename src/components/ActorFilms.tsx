@@ -44,7 +44,7 @@ function ActorFilms() {
                                 <FilmCard
                                     id={film.id}
                                     title={film.title}
-                                    releaseYear={film.releaseYear}
+                                    releaseYear={film.release_year}
                                 />
                             </Link>
                         </div>

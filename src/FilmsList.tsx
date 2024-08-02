@@ -1,18 +1,18 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { ActorData } from './components/Types';
+import { Film } from './components/Types';
 import { BASE_URL } from './api';
 
 function Home() {
-    const [actors, setActors] = useState<ActorData[]>([]);
+    const [films, setFilms] = useState<Film[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
-        fetch(`${BASE_URL}/actors`)
+        fetch(`${BASE_URL}/films`)
         .then(response => response.json())
-        .then((data: ActorData[]) => {
-            setActors(data);
+        .then((data: Film[]) => {
+            setFilms(data);
             setLoading(false);
         })
         .catch((error) => {
@@ -31,19 +31,19 @@ function Home() {
     }
 
     return (
-        <div className="actor">
-            <h1>Actors List</h1>
+        <div className="film">
+            <h1>Films List</h1>
             <h2>
-                Add an actor:
+                Add a film:
             </h2>
-            <Link to={`/create/actor`}>
-                Add Actor
+            <Link to={`/create/film`}>
+                Add Film
             </Link>
-            <h2>Actors:</h2>
-                {actors.map(actor => (
-                    <p key={actor.id}>
-                        <Link to={`/actors/${actor.id}`}>
-                            {actor.firstName} {actor.lastName}
+            <h2>Films:</h2>
+                {films.map(film => (
+                    <p key={film.id}>
+                        <Link to={`/films/${film.id}`}>
+                            {film.title}
                         </Link>
                     </p>
                 ))}

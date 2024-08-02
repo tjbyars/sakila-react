@@ -3,15 +3,25 @@ import FilmDetail from './components/FilmDetail';
 import { Route, Routes, BrowserRouter } from 'react-router-dom';
 import Home from './Home';
 import ActorFilms from './components/ActorFilms';
+import Menu from './Menu'
+import FilmsList from './FilmsList'
+import NavBar from './components/NavBar'
+import CreateActor from './pages/CreateActor'
+import CreateFilm from './pages/CreateFilm'
 
 function App() {
   return (
     <BrowserRouter>
+      <NavBar />
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Menu />} />
+        <Route path="/actors" element={<Home />} />
+        <Route path="/films" element={<FilmsList />} />
         <Route path="/actors/:id" element={<ActorFilms />} />
         <Route path="/films/:id" element={<FilmDetail />} />
-        <Route path="*" element={<Home />} />
+        <Route path="/create/film" element={<CreateFilm />} />
+        <Route path="/create/actor" element={<CreateActor />} />
+        <Route path="*" element={<Menu />} />
       </Routes>
     </BrowserRouter>
   );

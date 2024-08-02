@@ -41,6 +41,11 @@ function FilmDetail() {
         return <div>Film not found</div>;
     }
 
+    function deleteFilm(id: number) {
+        fetch(`${BASE_URL}/films/${id}`,
+        {method: "DELETE"})
+    }
+
     return (
         <div>
             {film ? (
@@ -52,30 +57,39 @@ function FilmDetail() {
                         {film.description}
                     </p>
                     <p>
-                        {film.length}
+                        Release year: {film.release_year} <br></br>
+                        Length: {film.length} minutes<br></br>
+                        Rating: {film.rating}<br></br>
+                        Special Features: {film.special_features}<br></br>
+                        {/* Language: {film.language.name} */}
                     </p>
+                    <h3>
+                        Cast:
+                    </h3>
                     <div>
                         {film && film.cast ? (
                             film.cast.map((actor: ActorData) => (
-                                <div key={actor.id}>
+                                <p key={actor.id}>
                                     <Link to={`/actors/${actor.id}`}>
                                         <div>
-                                            {/* Cast list */}
+                                            {actor.firstName} {actor.lastName}
                                         </div>
                                     </Link>
-                                </div>
+                                </p>
                             ))
                         ) : (
                             'No actors found'
                         )}
                     </div>
+                    <button onClick={() => deleteFilm(film.id)}>
+                        Delete Film
+                    </button>
                 </>
             ) : (
                 <div>No film found</div>
             )}
         </div>
     );
-
 
 };
 export default FilmDetail;
