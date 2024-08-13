@@ -1,6 +1,6 @@
 import './App.css';
 import FilmDetail from './components/FilmDetail';
-import { Route, Routes, BrowserRouter } from 'react-router-dom';
+import { Route, Routes, BrowserRouter, Outlet } from 'react-router-dom';
 import Home from './Home';
 import ActorFilms from './components/ActorFilms';
 import Menu from './Menu'
@@ -12,24 +12,25 @@ import CreateFilm from './pages/CreateFilm'
 function App() {
   return (
     <BrowserRouter>
-      <NavBar />
       <Routes>
         <Route path="/" element={<Menu />} />
-        <Route path="/actors" element={<Home />} />
-        <Route path="/films" element={<FilmsList />} />
-        <Route path="/actors/:id" element={<ActorFilms />} />
-        <Route path="/films/:id" element={<FilmDetail />} />
-        <Route path="/create/film" element={<CreateFilm />} />
-        <Route path="/create/actor" element={<CreateActor />} />
-        <Route path="*" element={<Menu />} />
+        <Route element={<>
+          <NavBar />
+          <Outlet />
+        </>}>
+          <Route path="/actors" element={<Home />} />
+          <Route path="/films" element={<FilmsList />} />
+          <Route path="/actors/:id" element={<ActorFilms />} />
+          <Route path="/films/:id" element={<FilmDetail />} />
+          <Route path="/create/film" element={<CreateFilm />} />
+          <Route path="/create/actor" element={<CreateActor />} />
+          <Route path="*" element={<Menu />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   );
 }
 export default App;
-
-
-
 
 
 

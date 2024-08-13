@@ -2,8 +2,12 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Film } from './components/Types';
 import { BASE_URL } from './api';
+import setBackgroundColor from './components/BackgroundColour';
 
 function Home() {
+
+    setBackgroundColor({color: "#657A9A"})
+
     const [films, setFilms] = useState<Film[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
@@ -41,7 +45,7 @@ function Home() {
             </Link>
             <h2>Films:</h2>
                 {films.map(film => (
-                    <p key={film.id}>
+                    <p key={film.id} id={`film${film.id}`}>
                         <Link to={`/films/${film.id}`}>
                             {film.title}
                         </Link>

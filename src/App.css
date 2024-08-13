@@ -3,11 +3,17 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  --bodyColor: "#9a6594";
 }
 
 body {
   font-family: Montserrat;
   margin: 0 auto;
+  background-color: var(--bodyColor);
+}
+
+.menu {
+  background-color: #9a6594;
 }
 
 .actor {

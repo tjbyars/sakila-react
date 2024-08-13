@@ -2,8 +2,12 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ActorData } from './components/Types';
 import { BASE_URL } from './api';
+import setBackgroundColor from './components/BackgroundColour';
 
 function Home() {
+
+    setBackgroundColor({color: "#659A6B"});
+
     const [actors, setActors] = useState<ActorData[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);

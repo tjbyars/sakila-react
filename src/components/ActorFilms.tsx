@@ -3,8 +3,12 @@ import { Link, useParams } from 'react-router-dom';
 import { ActorData, Film } from './Types';
 import FilmCard from './FilmCard';
 import { BASE_URL } from '../api';
+import setBackgroundColor from './BackgroundColour';
 
 function ActorFilms() {
+
+    setBackgroundColor({color: "#659A6B"});
+
     const { id } = useParams<{ id: string }>();
     const [data, setData] = useState<ActorData | null>(null);
     const [loading, setLoading] = useState<boolean>(true);
@@ -33,9 +37,9 @@ function ActorFilms() {
 
     return (
         <div>
-            <h2>
+            <h1>
                 Actor: {data ? `${data.firstName} ${data.lastName}` : 'Loading...'}
-            </h2>
+            </h1>
             <div>
                 {data && data.films ? (
                     data.films.map((film: Film) => (
@@ -44,7 +48,7 @@ function ActorFilms() {
                                 <FilmCard
                                     id={film.id}
                                     title={film.title}
-                                    releaseYear={film.release_year}
+                                    release_year={film.release_year}
                                 />
                             </Link>
                         </div>

@@ -1,9 +1,10 @@
-
 import { useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useLocation } from 'react-router-dom';
 import { Film } from '../components/Types';
 import { ActorData } from './Types'
 import { BASE_URL } from '../api';
+import setBackgroundColor from './BackgroundColour';
+import TinyActorCard from './TinyActorCard';
 
 interface FilmDetail {
     id: number;
@@ -11,13 +12,18 @@ interface FilmDetail {
     description: string;
     cast: ActorData[];
     length: number;
+    language: string;
 };
 
 function FilmDetail() {
+
+    setBackgroundColor({color: "#657A9A"})
+
     const { id } = useParams<{ id: string }>();
     const [film, setFilm] = useState<Film | null>(null);
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
+    const url = useLocation().pathname;
 
     useEffect(() => {
         fetch(`${BASE_URL}/films/${id}`)
@@ -41,22 +47,23 @@ function FilmDetail() {
         return <div>Film not found</div>;
     }
 
-    function deleteFilm(id: number) {
-        fetch(`${BASE_URL}/films/${id}`,
+    function deleteFilm() {
+        let deleteURL: String = `${BASE_URL}${url}`;
+        fetch(`${deleteURL}`,
         {method: "DELETE"})
     }
 
     return (
-        <div>
+        <div className="film">
             {film ? (
                 <>
-                    <h1>
+                    <h1 id="filmTitle">
                         {film.title}
                     </h1>
-                    <p>
+                    <p id="filmDescription">
                         {film.description}
                     </p>
-                    <p>
+                    <p id="filmExtraDetails">
                         Release year: {film.release_year} <br></br>
                         Length: {film.length} minutes<br></br>
                         Rating: {film.rating}<br></br>
@@ -71,9 +78,10 @@ function FilmDetail() {
                             film.cast.map((actor: ActorData) => (
                                 <p key={actor.id}>
                                     <Link to={`/actors/${actor.id}`}>
-                                        <div>
-                                            {actor.firstName} {actor.lastName}
-                                        </div>
+                                        <TinyActorCard
+                                            firstName={actor.firstName}
+                                            lastName={actor.lastName}
+                                        />
                                     </Link>
                                 </p>
                             ))
@@ -81,9 +89,12 @@ function FilmDetail() {
                             'No actors found'
                         )}
                     </div>
-                    <button onClick={() => deleteFilm(film.id)}>
-                        Delete Film
-                    </button>
+                    <br /><br />
+                    <Link to={`/films`}>
+                        <button onClick={() => deleteFilm()}>
+                            Delete Film
+                        </button>
+                    </Link>
                 </>
             ) : (
                 <div>No film found</div>

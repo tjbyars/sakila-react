@@ -1,7 +1,11 @@
 import { Link } from 'react-router-dom';
 import './Menu.css'
+import './components/BackgroundColour'
+import setBackgroundColor from './components/BackgroundColour';
 
 function Menu() {
+
+    setBackgroundColor({color: "#9a6594"});
 
     return (
         <div>
