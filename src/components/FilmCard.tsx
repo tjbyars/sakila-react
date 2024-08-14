@@ -1,6 +1,6 @@
 
 
-function FilmCard(id: number, title: String, release_year: number) {
+function FilmCard({id, title, release_year}: any) {
     return (
         <div>
             <div>
